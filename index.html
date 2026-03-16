@@ -9,36 +9,37 @@
   <meta name="color-scheme" content="light only" />
 
   <!--
-    Sobi palette (publicly visible references):
-      --sobi-blue: #1F4253 (deep blue)
-      --sobi-yellow: #FCB813 (sun yellow)
-    Source: Brand assets aggregators referencing sobi.com; use official Sobi media gallery for logo. 
+    Sobi-inspired tokens:
+      --sobi-blue:   #1F4253
+      --sobi-yellow: #FCB813
+    Logo source: https://www.sobi.com/en/image-gallery (PNG linked in code)
   -->
 
   <style>
     /* ==============================
-       Design tokens (Sobi-inspired)
+       Design Tokens (Sobi style)
        ============================== */
     :root{
       --sobi-blue:   #1F4253;
       --sobi-yellow: #FCB813;
-      --ink:         #0d1b22;  /* heading/body on light */
-      --muted:       #355566;  /* supporting text */
-      --bg:          #f7fafc;  /* page background */
-      --panel:       #ffffff;  /* cards */
-      --rule:        #e6eef3;  /* borders/rules */
+      --ink:         #3a3a3a;
+      --ink-strong:  #2a2a2a;
+      --muted:       #6b7280;
+      --bg-page:     #ffffff;
+      --rule:        #e9edf2;
+
       --radius-lg:   18px;
       --radius-sm:   12px;
-      --shadow-lg:   0 18px 45px rgba(10, 27, 35, .10);
-      --shadow-sm:   0 6px 18px rgba(10, 27, 35, .08);
+      --shadow-lg:   0 20px 50px rgba(15, 28, 38, .12);
+      --shadow-sm:   0 10px 26px rgba(15, 28, 38, .08);
 
-      /* Type scale (fluid) */
-      --step--1: clamp(.88rem, .39vw + .78rem, .98rem);
-      --step-0:  clamp(1.00rem, .45vw + .90rem, 1.10rem);
-      --step-1:  clamp(1.20rem, .65vw + 1.00rem, 1.35rem);
-      --step-2:  clamp(1.44rem, .90vw + 1.10rem, 1.62rem);
-      --step-3:  clamp(1.80rem, 1.20vw + 1.30rem, 2.05rem);
-      --step-4:  clamp(2.15rem, 1.80vw + 1.50rem, 2.60rem);
+      /* Fluid type */
+      --step--1: clamp(.9rem, .35vw + .8rem, 1rem);
+      --step-0:  clamp(1.0rem, .45vw + .9rem, 1.12rem);
+      --step-1:  clamp(1.15rem, .7vw + 1rem, 1.35rem);
+      --step-2:  clamp(1.45rem, 1.1vw + 1.1rem, 1.75rem);
+      --step-3:  clamp(1.95rem, 1.6vw + 1.3rem, 2.25rem);
+      --step-4:  clamp(2.45rem, 2.2vw + 1.6rem, 3rem);
     }
 
     /* Base */
@@ -46,194 +47,180 @@
     html, body { height: 100%; }
     body{
       margin:0;
-      font: 400 var(--step-0)/1.55 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font: 400 var(--step-0)/1.55 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";
       color: var(--ink);
-      background:
-        radial-gradient(1200px 600px at 100% -10%, rgba(31,66,83,.08), transparent 60%),
-        radial-gradient(900px 500px at -10% 100%, rgba(252,184,19,.08), transparent 60%),
-        var(--bg);
+      background: var(--bg-page);
     }
-
     a { color: var(--sobi-blue); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
     .wrap{
-      max-width: 1100px;
-      margin: min(6vw, 56px) auto;
+      max-width: 980px;
+      margin: min(6vw, 64px) auto;
       padding: 0 20px;
     }
 
-    /* Header / Hero */
-    header.hero{
-      background: linear-gradient(180deg, #fff, #fff0);
+    /* ==============================
+       HERO (matches invite style)
+       ============================== */
+    .hero{
+      position: relative;
       border: 1px solid var(--rule);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-lg);
       overflow: clip;
-      position: relative;
+      box-shadow: var(--shadow-lg);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.95) 50%, rgba(255,255,255,1) 70%),
+        url("assets/bg-invite.png") top right / cover no-repeat;
       isolation: isolate;
     }
-    .hero::after{
-      /* Animated accent top bar */
+
+    /* Animated accent (thin bar at the very top, Sobi yellow) */
+    .hero::before{
       content:"";
       position:absolute; inset:0 0 auto 0; height:6px;
       background:
         linear-gradient(90deg,
           var(--sobi-yellow) 0%,
-          color-mix(in srgb, var(--sobi-yellow) 70%, #fff) 25%,
+          color-mix(in srgb, var(--sobi-yellow) 65%, #fff) 25%,
           var(--sobi-blue) 50%,
-          color-mix(in srgb, var(--sobi-yellow) 70%, #fff) 75%,
+          color-mix(in srgb, var(--sobi-yellow) 65%, #fff) 75%,
           var(--sobi-yellow) 100%);
       transform: translateX(-50%);
-      animation: slidebar 8s linear infinite;
-      opacity:.9;
+      animation: slidebar 9s linear infinite;
+      opacity:.95;
+      z-index:2;
     }
-    @keyframes slidebar {
-      from { transform: translateX(-60%); }
-      to   { transform: translateX(0%); }
-    }
+    @keyframes slidebar { from { transform: translateX(-60%); } to { transform: translateX(0%); } }
 
     .hero-inner{
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: clamp(16px, 4vw, 40px);
-      padding: clamp(24px, 4vw, 56px);
+      display:grid; gap: 18px;
+      grid-template-columns: 1fr minmax(260px, 340px);
+      padding: clamp(24px, 4vw, 48px);
     }
-    @media (max-width: 840px){
-      .hero-inner{ grid-template-columns: 1fr; }
-    }
+    @media (max-width: 900px){ .hero-inner{ grid-template-columns: 1fr; } }
 
-    .brand{
-      display:flex; align-items:center; gap:14px; margin-bottom: 10px;
-    }
-    .brand .logo{
-      width: 132px; height:auto; display:block;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,.05));
+    .brand-row{ display:flex; align-items:center; gap:12px; }
+    .logo{
+      height: 42px; width:auto; display:block;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,.06));
     }
     .eyebrow{
       color: var(--sobi-blue);
-      text-transform: uppercase; letter-spacing: .12em; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .12em; font-weight: 800;
       font-size: var(--step--1);
+      white-space: nowrap;
     }
+
     h1{
       font-size: var(--step-4);
       line-height: 1.12;
-      margin: .35rem 0 .5rem 0;
+      margin: .35rem 0 .6rem 0;
       font-weight: 800;
-      letter-spacing: .01em;
+      color: var(--ink-strong);
     }
+
     .subtitle{
-      color: var(--muted);
+      color: #5a504a;
       font-size: var(--step-1);
+      margin: .25rem 0 0;
     }
 
-    .meta{
-      display:grid; gap: 16px; margin-top: 18px;
+    /* Date/time ribbon like the invite */
+    .when{
+      margin-top: 1.1rem;
+      display:inline-block;
+      background: linear-gradient(180deg, #ffd77a, var(--sobi-yellow));
+      color: #3a2c00;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-weight: 800;
+      box-shadow: 0 8px 22px rgba(252,184,19,.25), inset 0 1px 0 rgba(255,255,255,.7);
     }
-    .pill{
-      display:flex; align-items:center; gap:10px;
-      padding: 10px 14px; border-radius: 999px;
-      background: #fff; border:1px solid var(--rule);
-      box-shadow: var(--shadow-sm);
-      color: var(--sobi-blue); font-weight: 700;
-      width: max-content;
+    .timedetail{
+      margin-top:.35rem; color:#5b6166;
+      border-top: 3px solid #e9e2db; padding-top:.6rem;
     }
-    .meta-grid{
-      display:grid; gap: 16px; margin-top: 14px;
-      grid-template-columns: 1fr 1fr;
-    }
-    @media (max-width: 720px){ .meta-grid{ grid-template-columns: 1fr; } }
-    .meta-card{
-      background: #fff; border: 1px solid var(--rule);
-      border-radius: var(--radius-sm);
-      padding: 16px 18px;
-    }
-    .meta-card .label{ color: var(--muted); font-size: var(--step--1); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
-    .meta-card .value{ font-size: var(--step-1); margin-top: 6px; }
 
-    /* Content section */
-    main{
-      margin-top: clamp(20px, 3.5vw, 36px);
-      display:grid; gap: 22px;
+    .divider{
+      height: 2px; background: #e6dad2; margin: 14px 0;
     }
-    .card{
-      background: var(--panel);
+
+    /* Right column: sticky “Add to calendar” */
+    aside.cta-col{
+      align-self:flex-start;
+      position: relative;
+      background: #fff;
       border:1px solid var(--rule);
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-sm);
+      padding: 16px;
       box-shadow: var(--shadow-sm);
-      padding: clamp(18px, 3vw, 28px);
     }
-    .card h2{
-      font-size: var(--step-2); margin:0 0 .4rem 0; line-height:1.2;
+    .cta-col h2{
+      margin:0 0 .25rem 0; font-size: var(--step-1);
     }
-    .lead{ color: var(--muted); font-size: var(--step-0); }
+    .note{ color: var(--muted); font-size: var(--step--1); }
 
-    ul.agenda{ margin:.5rem 0 0 0; padding-left: 1.1rem; }
-    ul.agenda li{ margin:.3rem 0; }
-
-    /* CTA buttons */
-    .cta{ display:flex; flex-wrap:wrap; gap:12px; margin-top: 12px; }
     .btn{
-      --bg: var(--sobi-blue);
-      --ink: #fff;
+      --bg: var(--sobi-blue); --ink: #fff;
       display:inline-flex; align-items:center; gap:10px;
-      border: 1px solid color-mix(in srgb, var(--bg) 70%, #fff);
+      border:1px solid color-mix(in srgb, var(--bg) 60%, #fff);
       background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 90%, #fff), var(--bg));
       color: var(--ink);
-      padding: 12px 16px; border-radius: 12px; font-weight: 800;
-      box-shadow: 0 8px 18px rgba(31,66,83,.18), inset 0 1px 0 rgba(255,255,255,.25);
+      padding: 12px 16px; border-radius: 12px;
+      font-weight: 800;
+      box-shadow: 0 10px 24px rgba(31,66,83,.18), inset 0 1px 0 rgba(255,255,255,.25);
       transform: translateY(0);
       transition: transform .18s ease, box-shadow .18s ease, background .24s ease;
       text-decoration: none;
     }
-    .btn:hover{ transform: translateY(-2px); box-shadow: 0 14px 28px rgba(31,66,83,.18); }
+    .btn:hover{ transform: translateY(-2px); box-shadow: 0 16px 32px rgba(31,66,83,.18); }
     .btn:focus-visible{ outline: 3px solid color-mix(in srgb, var(--sobi-yellow) 70%, #fff); outline-offset: 2px; }
 
-    .btn.primary{ --bg: var(--sobi-blue); }
-    .btn.secondary{
-      --bg: var(--sobi-yellow); --ink:#111;
-      border-color: color-mix(in srgb, var(--sobi-yellow) 55%, #000);
-    }
+    .btn.secondary{ --bg: var(--sobi-yellow); --ink: #111; }
 
-    /* Accent underline for section headings */
-    .accent{
-      position:relative; display:inline-block;
+    /* Agenda section */
+    .card{
+      margin-top: 18px;
+      background:#fff; border:1px solid var(--rule);
+      border-radius: var(--radius-lg); padding: clamp(18px, 3vw, 28px);
+      box-shadow: var(--shadow-sm);
     }
-    .accent::after{
-      content:""; position:absolute; left:0; right:0; bottom:-6px; height:6px;
-      background: linear-gradient(90deg, var(--sobi-yellow), color-mix(in srgb, var(--sobi-blue) 40%, var(--sobi-yellow)));
-      border-radius: 6px;
-      transform-origin: left center;
-      transform: scaleX(0);
-      animation: underline .9s .2s ease-out forwards;
-    }
-    @keyframes underline { to { transform: scaleX(1); } }
+    .card h2{ font-size: var(--step-2); margin:0 0 .4rem 0; line-height:1.2; }
+    ul.agenda{ margin:.6rem 0 0; padding-left: 1.1rem; }
+    ul.agenda li{ margin:.42rem 0; }
+    .speaker{ color: var(--sobi-blue); font-weight: 800; }
+    .country{ color:#9a8f86; font-style: italic; font-size: var(--step--1); display:block; margin-top:.05rem; }
 
-    /* Footer */
-    footer.foot{
-      margin-top: clamp(16px, 3vw, 28px);
-      color: var(--muted);
-      font-size: var(--step--1);
-      display:grid; gap:10px;
-      grid-template-columns: 1fr auto;
-      align-items:center;
+    /* Bottom brand bar (orange) */
+    .brandbar{
+      margin-top: 22px;
+      background: linear-gradient(180deg, #ffd77a, var(--sobi-yellow));
+      border:1px solid color-mix(in srgb, var(--sobi-yellow) 65%, #000);
+      border-radius: var(--radius-lg);
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 16px 18px;
+      color:#3a2c00;
+      box-shadow: 0 10px 26px rgba(252,184,19,.25), inset 0 1px 0 rgba(255,255,255,.7);
     }
-    footer .legal{ text-align:right; }
-    @media (max-width:720px){ footer.foot{ grid-template-columns: 1fr; } footer .legal{ text-align:left; } }
+    .brandbar .logo-white{
+      filter: brightness(0) invert(1); /* white logo treatment */
+      height: 34px; width:auto;
+    }
+    .legal{ font-size: var(--step--1); }
 
     /* Reveal on scroll */
     .reveal{ opacity:0; transform: translateY(16px); }
     .reveal.in{ opacity:1; transform: none; transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
 
-    /* Motion safety */
     @media (prefers-reduced-motion: reduce){
-      .hero::after, .accent::after { animation: none !important; }
+      .hero::before{ animation:none !important; }
       .reveal{ opacity:1; transform:none; }
-      .btn, .btn:hover{ transition: none; transform:none; }
+      .btn, .btn:hover{ transition:none; transform:none; }
     }
   </style>
 
-  <!-- Structured data for richer sharing -->
+  <!-- Structured data (rich previews) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -261,93 +248,96 @@
   }
   </script>
 </head>
+
 <body>
   <div class="wrap">
-    <header class="hero reveal">
+    <!-- HERO -->
+    <section class="hero reveal" role="banner" aria-labelledby="event-title">
       <div class="hero-inner">
         <div>
-          <div class="brand">
-            <!-- Replace with official logo from Sobi media gallery -->
-            <img src="assets/sobi-logo.svg" width="180" height="48" alt="Sobi — Swedish Orphan Biovitrum" class="logo" />
-            <span class="eyebrow" aria-label="Session type">Medical Education Session</span>
+          <div class="brand-row">
+            <img class="logo" alt="Sobi logo"
+                 src="https://www.sobi.com/sites/sobi/files/ma/SOBI_logo_PNG_0.png">
+            <span class="eyebrow">Sobi Updates‑in‑Hematology at EHA2026 Congress</span>
           </div>
-          <h1>Sobi Updates‑in‑Hematology at EHA2026</h1>
-          <p class="subtitle">From Labs to Lives: Redefining Success in Rare Diseases — Paroxysmal Nocturnal Haemoglobinuria (PNH) &amp; Chronic Immune Thrombocytopenia (ITP)</p>
 
-          <div class="meta">
-            <div class="pill" aria-label="EHA2026 tag">#EHA2026</div>
-            <div class="meta-grid" role="group" aria-label="Event details">
-              <div class="meta-card">
-                <div class="label">Date &amp; Time</div>
-                <div class="value"><strong>Saturday, 13 June 2026</strong><br/>10:00–11:30 <abbr title="Central European Summer Time">CEST</abbr></div>
-              </div>
-              <div class="meta-card">
-                <div class="label">Venue</div>
-                <div class="value"><strong>A6 Hall</strong><br/>Stockholmsmässan, Stockholm, Sweden</div>
-              </div>
-            </div>
+          <h1 id="event-title">From Labs to Lives:<br>
+            Redefining Success in Rare Diseases<br>
+            <span style="font-weight:800">Paroxysmal Nocturnal Haemoglobinuria (PNH)</span><br>
+            and <span style="font-weight:800">Chronic Immune Thrombocytopenia (ITP)</span>
+          </h1>
+
+          <span class="when">Saturday, 13 June 2026</span>
+          <div class="timedetail">
+            <strong>10:00–11:30 CEST</strong><br>
+            A6 Hall, Stockholmsmässan, Stockholm, Sweden
           </div>
+
+          <div class="divider" aria-hidden="true"></div>
+
+          <p class="subtitle">The importance of real‑world experience and patient perspective in rare diseases</p>
+          <div class="subtitle"><span class="speaker">Danny Hsu (Chair)</span> <span class="country">Australia</span></div>
+
+          <p class="subtitle">PNH: Lifting the fog of fatigue</p>
+          <div class="subtitle"><span class="speaker">Ana Boban</span> <span class="country">Croatia</span></div>
+
+          <p class="subtitle">Common themes across rare haematological diseases: My observations from treating patients with PNH &amp; ITP</p>
+          <div class="subtitle"><span class="speaker">Danny Hsu (Chair)</span> <span class="country">Australia</span></div>
+
+          <p class="subtitle">ITP: Beyond the count, transforming patient care</p>
+          <div class="subtitle"><span class="speaker">María Lozano</span> <span class="country">Spain</span></div>
+
+          <p class="subtitle"><strong>Panel discussion and conclusion</strong><br><span class="country">All</span></p>
         </div>
 
-        <aside aria-label="Calls to action" class="reveal">
-          <h2 class="accent" style="margin-top:0">Add to your calendar</h2>
-          <p class="lead">Click below to add the session to your calendar. Your device may show a security prompt.</p>
-          <div class="cta" role="group">
-            <!-- Primary: universal ICS -->
-            <a class="btn primary" href="https://addcalendar.github.io/CalendarLinks/sobi-eha2026-symposium.ics">
-              <span aria-hidden="true">📅</span> Add to calendar (.ics)
-            </a>
-            <!-- Optional: Outlook on the web deeplink (pre-populated) -->
-            <a class="btn secondary" href="https://outlook.office.com/calendar/0/deeplink/compose?subject=Sobi%20Updates-in-Hematology%20at%20EHA2026%20Congress&startdt=2026-06-13T08:00:00Z&enddt=2026-06-13T09:30:00Z&location=A6%20Hall%2C%20Stockholmsm%C3%A4ssan%2C%20Stockholm%2C%20Sweden&body=From%20Labs%20to%20Lives%3A%20Redefining%20Success%20in%20Rare%20Diseases%20%E2%80%94%20PNH%20%26%20ITP.">
-              <span aria-hidden="true">✉️</span> Add via Outlook Web
+        <aside class="cta-col reveal" aria-label="Add to calendar">
+          <h2>Add to your calendar</h2>
+          <p class="note">Click below to add this session to your calendar. Your device may show a security prompt.</p>
+          <div class="cta">
+            <a class="btn" href="https://addcalendar.github.io/CalendarLinks/sobi-eha2026-symposium.ics">
+              📅 Add to calendar (.ics)
             </a>
           </div>
+          <p class="note" style="margin-top:.6rem">
+            Outlook on the web user? <a href="https://outlook.office.com/calendar/0/deeplink/compose?subject=Sobi%20Updates-in-Hematology%20at%20EHA2026%20Congress&startdt=2026-06-13T08:00:00Z&enddt=2026-06-13T09:30:00Z&location=A6%20Hall%2C%20Stockholmsm%C3%A4ssan%2C%20Stockholm%2C%20Sweden&body=From%20Labs%20to%20Lives%3A%20Redefining%20Success%20in%20Rare%20Diseases%20%E2%80%94%20PNH%20%26%20ITP.">Add via Outlook web</a>.
+          </p>
         </aside>
       </div>
-    </header>
+    </section>
 
-    <main>
-      <section class="card reveal" aria-labelledby="programme">
-        <h2 id="programme" class="accent">Programme</h2>
-        <ul class="agenda">
-          <li><strong>Chair:</strong> Danny Hsu — The importance of real‑world experience and patient perspective in rare diseases</li>
-          <li><strong>PNH:</strong> “Lifting the fog of fatigue” — Ana Boban</li>
-          <li><strong>Common themes:</strong> Observations from treating patients with PNH &amp; ITP — Danny Hsu</li>
-          <li><strong>ITP:</strong> “Beyond the count, transforming patient care” — María Lozano</li>
-          <li><strong>Panel discussion and conclusion</strong></li>
-        </ul>
-      </section>
+    <!-- PROGRAMME (optional fuller list in a card) -->
+    <section class="card reveal" aria-labelledby="programme">
+      <h2 id="programme">Programme</h2>
+      <ul class="agenda">
+        <li><strong>Chair:</strong> Danny Hsu — The importance of real‑world experience and patient perspective in rare diseases</li>
+        <li><strong>PNH:</strong> “Lifting the fog of fatigue” — Ana Boban</li>
+        <li><strong>Common themes:</strong> Observations from treating patients with PNH &amp; ITP — Danny Hsu</li>
+        <li><strong>ITP:</strong> “Beyond the count, transforming patient care” — María Lozano</li>
+        <li><strong>Panel discussion and conclusion</strong> — All</li>
+      </ul>
+    </section>
 
-      <section class="card reveal" aria-labelledby="audience">
-        <h2 id="audience" class="accent">Intended audience</h2>
-        <p class="lead">This medical education session is intended for healthcare professionals.</p>
-      </section>
-
-      <footer class="foot reveal" role="contentinfo">
-        <div>
-          <strong>Sobi — Swedish Orphan Biovitrum AB (publ)</strong><br/>
-          SE‑112 76 Stockholm, Sweden · <a href="https://www.sobi.com">sobi.com</a>
-        </div>
-        <div class="legal">
-          ©2026 Sobi. All rights reserved. “Sobi” is a trademark of Swedish Orphan Biovitrum AB (publ).
-        </div>
-      </footer>
-    </main>
+    <!-- BRAND BAR -->
+    <section class="brandbar reveal" aria-label="Brand & legal">
+      <div class="legal">
+        This medical education session is intended for healthcare professionals.<br>
+        ©2026 Swedish Orphan Biovitrum AB (publ). All rights reserved. “Sobi” is a trademark of Swedish Orphan Biovitrum AB (publ).
+      </div>
+      <img class="logo-white" alt="Sobi logo"
+           src="https://www.sobi.com/sites/sobi/files/ma/SOBI_logo_PNG_0.png">
+    </section>
   </div>
 
   <script>
-    // IntersectionObserver: reveal on scroll
+    // Reveal-on-scroll
     (function(){
-      const revealEls = document.querySelectorAll('.reveal');
+      const els = document.querySelectorAll('.reveal');
       const io = new IntersectionObserver((entries)=>{
         for(const e of entries){
-          if(e.isIntersecting){
-            e.target.classList.add('in');
-            io.unobserve(e.target);
-          }
+          if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
         }
       }, {rootMargin: "0px 0px -10% 0px", threshold: .15});
-      revealEls.forEach(el => io.observe(el));
+      els.forEach(el => io.observe(el));
     }());
   </script>
 </body>
