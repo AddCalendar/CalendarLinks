@@ -9,214 +9,215 @@
 
   <style>
     /* ==============================
-       Design Tokens (Sobi style)
+       Design Tokens (Matched to PDF)
        ============================== */
     :root {
-      --sobi-blue: #1F4253;
-      --sobi-yellow: #FCB813;
-      --ink: #334155;
-      --ink-strong: #0f172a;
-      --muted: #64748b;
-      --bg-page: #f8fafc;
-      --rule: #e2e8f0;
+      --brand-orange: #f09a1a;
+      --brand-orange-hover: #d68712;
+      --text-main: #4b4b4d;
+      --text-muted: #737373;
+      --rule: #e5e5e5;
+      --bg-page: #f9f9f9;
 
       --radius-lg: 16px;
       --radius-sm: 12px;
-      --shadow-lg: 0 20px 40px -10px rgba(31, 66, 83, 0.1);
-      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-      --shadow-hover: 0 10px 25px -5px rgba(31, 66, 83, 0.2);
+      --shadow-lg: 0 25px 50px -12px rgba(240, 154, 26, 0.1);
+      --shadow-sm: 0 8px 16px -4px rgba(0, 0, 0, 0.04);
+      --shadow-hover: 0 12px 28px -6px rgba(240, 154, 26, 0.25);
 
       /* Fluid Typography */
       --step--1: 0.875rem;
-      --step-0: 1rem;
-      --step-1: 1.125rem;
+      --step-0: 1.05rem;
+      --step-1: 1.25rem;
       --step-2: 1.5rem;
       --step-3: 1.875rem;
-      --step-4: clamp(2rem, 4vw + 1rem, 2.75rem);
+      --step-4: clamp(1.8rem, 4vw + 1rem, 2.4rem);
     }
 
     /* Base Reset */
     *, *::before, *::after { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-      color: var(--ink);
+      /* Clean, rounded sans-serif to mirror the flyer's font */
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text-main);
       background: var(--bg-page);
-      line-height: 1.6;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
-    a { color: var(--sobi-blue); text-decoration: none; transition: color 0.2s; }
-    a:hover { color: #112833; text-decoration: underline; }
+    a { color: var(--brand-orange); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--brand-orange-hover); text-decoration: underline; }
     
     .wrap {
-      max-width: 1000px;
-      margin: min(5vw, 48px) auto;
+      max-width: 1050px;
+      margin: min(4vw, 40px) auto;
       padding: 0 20px;
     }
 
     /* ==============================
-       HERO / MAIN CARD
+       HERO / MAIN CARD WITH BACKGROUND
        ============================== */
     .hero {
       position: relative;
-      border: 1px solid var(--rule);
-      border-radius: var(--radius-lg);
-      background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-      box-shadow: var(--shadow-lg);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      /* Blends a white overlay on the left into the shapes on the right */
+      background: 
+        linear-gradient(100deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.95) 45%, rgba(255,255,255,0.2) 100%),
+        url("https://raw.githubusercontent.com/AddCalendar/CalendarLinks/main/assets/bg-invite.png");
+      background-size: cover;
+      background-position: center right;
+      background-repeat: no-repeat;
+      box-shadow: var(--shadow-sm);
       overflow: hidden;
-    }
-
-    /* Fixed Top Sliding Animation Bar */
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, var(--sobi-yellow), var(--sobi-blue), var(--sobi-yellow), var(--sobi-blue));
-      background-size: 300% 100%;
-      animation: slidebar 6s linear infinite;
-      z-index: 2;
-    }
-
-    @keyframes slidebar {
-      0% { background-position: 100% 0; }
-      100% { background-position: -50% 0; }
+      background-color: #fff;
     }
 
     .hero-inner {
       display: grid;
-      gap: 32px;
-      grid-template-columns: 1fr minmax(280px, 320px);
-      padding: clamp(24px, 5vw, 48px);
+      gap: 40px;
+      grid-template-columns: 1fr minmax(300px, 340px);
+      padding: clamp(32px, 5vw, 56px);
+      position: relative;
+      z-index: 1;
     }
 
-    @media (max-width: 850px) {
+    @media (max-width: 900px) {
       .hero-inner { grid-template-columns: 1fr; }
+      .hero {
+        background: 
+          linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.96) 60%, rgba(255,255,255,0.7) 100%),
+          url("https://raw.githubusercontent.com/AddCalendar/CalendarLinks/main/assets/bg-invite.png");
+        background-size: cover;
+      }
     }
 
     /* Header Content */
-    .brand-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-    .logo {
-      height: 38px;
-      width: auto;
-      display: block;
-    }
     .eyebrow {
-      color: var(--sobi-blue);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 800;
-      font-size: var(--step--1);
+      color: var(--brand-orange);
+      font-size: var(--step-0);
+      margin-bottom: 32px;
+      display: block;
     }
 
     h1 {
       font-size: var(--step-4);
-      line-height: 1.15;
-      margin: 0 0 16px 0;
-      font-weight: 800;
-      color: var(--ink-strong);
-      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin: 0 0 40px 0;
+      font-weight: 400;
+      color: var(--text-main);
+    }
+    h1 strong {
+      font-weight: 700;
+      display: block;
     }
 
-    h1 span.highlight {
-      color: var(--sobi-blue);
+    /* Date and Time Text Block */
+    .when-block {
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--rule);
+      max-width: 450px;
     }
-
-    /* Date and Time Badge */
-    .when-badge {
-      display: inline-flex;
-      flex-direction: column;
-      background: #fff;
-      border: 1px solid var(--rule);
-      border-left: 4px solid var(--sobi-yellow);
-      border-radius: 8px;
-      padding: 12px 20px;
-      margin: 16px 0 32px;
-      box-shadow: var(--shadow-sm);
+    .when-block .date {
+      color: var(--brand-orange);
+      font-weight: 700;
+      font-size: var(--step-3);
+      line-height: 1.2;
+      margin-bottom: 8px;
     }
-    .when-badge .date {
-      color: var(--sobi-blue);
-      font-weight: 800;
-      font-size: var(--step-1);
-      margin-bottom: 4px;
-    }
-    .when-badge .time-loc {
-      color: var(--muted);
-      font-size: var(--step--1);
+    .when-block .time-loc {
+      color: var(--text-main);
+      font-size: var(--step-0);
       line-height: 1.4;
     }
 
     /* ==============================
-       SPEAKER LIST (Restructured)
+       TIMELINE AGENDA
        ============================== */
-    .speaker-list {
+    .timeline {
+      position: relative;
+      padding-left: 20px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      margin-top: 16px;
+      gap: 24px;
     }
-    .speaker-item {
-      display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 16px;
-      align-items: start;
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background: rgba(240, 154, 26, 0.2);
     }
-    @media (max-width: 600px) {
-      .speaker-item { grid-template-columns: 1fr; gap: 4px; }
+
+    .timeline-item {
+      position: relative;
     }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--brand-orange);
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.8);
+      z-index: 1;
+    }
+
+    .speaker-topic {
+      color: var(--text-main);
+      font-size: var(--step-1);
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+    
     .speaker-info .name {
-      display: block;
-      color: var(--sobi-blue);
-      font-weight: 800;
+      color: var(--brand-orange);
+      font-weight: 700;
       font-size: var(--step-0);
+      display: block;
     }
     .speaker-info .country {
-      display: inline-block;
-      color: var(--muted);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-top: 2px;
-    }
-    .speaker-topic {
-      color: var(--ink-strong);
-      font-size: var(--step-0);
-      font-weight: 500;
+      color: var(--text-muted);
+      font-size: var(--step--1);
+      display: block;
     }
 
     /* ==============================
-       SIDEBAR / CTA
+       SIDEBAR / CTA (Glassmorphism)
        ============================== */
     aside.cta-col {
-      background: #ffffff;
-      border: 1px solid var(--rule);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
       border-radius: var(--radius-sm);
-      padding: 24px;
-      box-shadow: var(--shadow-sm);
+      padding: 32px 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
       align-self: start;
       position: sticky;
-      top: 24px;
+      top: 32px;
     }
     .cta-col h2 {
-      margin: 0 0 8px 0;
-      font-size: var(--step-1);
-      color: var(--ink-strong);
+      margin: 0 0 12px 0;
+      font-size: var(--step-2);
+      color: var(--text-main);
+      font-weight: 700;
     }
     .cta-col .note {
-      color: var(--muted);
+      color: var(--text-muted);
       font-size: var(--step--1);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      line-height: 1.5;
     }
     
     .btn-group {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
     }
 
     .btn {
@@ -227,63 +228,71 @@
       padding: 14px 20px;
       border-radius: 8px;
       font-weight: 700;
+      font-size: var(--step-0);
       text-decoration: none !important;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
       text-align: center;
-      border: 1px solid transparent;
     }
     
     .btn.primary {
-      background: var(--sobi-blue);
+      background: var(--brand-orange);
       color: #ffffff;
-      box-shadow: 0 4px 14px rgba(31, 66, 83, 0.25);
+      box-shadow: 0 8px 16px -4px rgba(240, 154, 26, 0.4);
+      border: 1px solid var(--brand-orange);
     }
     .btn.primary:hover {
-      background: #152d3a;
+      background: var(--brand-orange-hover);
       transform: translateY(-2px);
       box-shadow: var(--shadow-hover);
+      color: #ffffff;
     }
 
     .btn.secondary {
       background: #ffffff;
-      color: var(--sobi-blue);
-      border-color: var(--rule);
+      color: var(--brand-orange);
+      border: 1px solid var(--rule);
     }
     .btn.secondary:hover {
-      background: #f8fafc;
-      border-color: var(--muted);
+      background: #fafafa;
+      border-color: var(--brand-orange);
+      transform: translateY(-2px);
     }
 
     /* ==============================
-       BRAND BAR / FOOTER
+       BRAND BAR / FOOTER (PDF Match + Sobi Gradient)
        ============================== */
     .brandbar {
-      margin-top: 32px;
-      background: var(--sobi-blue);
-      border-radius: var(--radius-lg);
+      background: linear-gradient(to right, #F0B323, #EB9200);
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: space-between;
-      padding: 24px;
-      color: #e2e8f0;
-      box-shadow: var(--shadow-md);
+      padding: 40px;
+      color: #ffffff;
     }
     @media (max-width: 650px) {
       .brandbar {
         flex-direction: column;
-        text-align: center;
-        gap: 20px;
+        align-items: flex-start;
+        gap: 32px;
+        padding: 32px 24px;
       }
     }
-    .brandbar .logo-white {
-      filter: brightness(0) invert(1);
-      height: 34px;
-      width: auto;
-    }
+    
     .legal {
       font-size: 0.8rem;
-      line-height: 1.5;
-      max-width: 600px;
+      line-height: 1.6;
+      max-width: 500px;
+    }
+    .legal p {
+      margin: 0 0 12px 0;
+    }
+    .legal p:last-child { margin: 0; }
+    
+    .brandbar .logo-white {
+      filter: brightness(0) invert(1);
+      height: 48px;
+      width: auto;
     }
 
     /* ==============================
@@ -291,8 +300,8 @@
        ============================== */
     .reveal {
       opacity: 0;
-      transform: translateY(15px);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .reveal.in {
       opacity: 1;
@@ -300,7 +309,6 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .hero::before { animation: none !important; }
       .reveal { opacity: 1; transform: none; transition: none; }
       .btn:hover { transform: none; }
     }
@@ -310,73 +318,70 @@
 <body>
   <div class="wrap">
     
-    <!-- HERO -->
+    <!-- HERO SECTION -->
     <main class="hero reveal" role="main" aria-labelledby="event-title">
       <div class="hero-inner">
         <div class="content-col">
           
-          <div class="brand-row">
-            <img class="logo" alt="Sobi logo" src="https://www.sobi.com/sites/sobi/files/ma/SOBI_logo_PNG_0.png">
-            <span class="eyebrow">Updates‑in‑Hematology • EHA2026</span>
-          </div>
+          <span class="eyebrow">Sobi Updates-in-Hematology at EHA2026 Congress</span>
 
           <h1 id="event-title">From Labs to Lives:<br>
-            Redefining Success in Rare Diseases
+            <strong>Redefining Success in Rare Diseases</strong>
+            <strong>Paroxysmal Nocturnal Haemoglobinuria (PNH)</strong>
+            <strong>and Chronic Immune Thrombocytopenia (ITP)</strong>
           </h1>
-          <p style="font-size: var(--step-1); color: var(--muted); margin-top: -8px; margin-bottom: 24px;">
-            <span class="highlight" style="color:var(--sobi-blue); font-weight:700;">Paroxysmal Nocturnal Haemoglobinuria (PNH)</span> &amp; <br>
-            <span class="highlight" style="color:var(--sobi-blue); font-weight:700;">Chronic Immune Thrombocytopenia (ITP)</span>
-          </p>
 
-          <div class="when-badge">
-            <span class="date">Saturday, 13 June 2026</span>
-            <span class="time-loc">
-              <strong>10:00–11:30 CEST</strong><br>
+          <div class="when-block">
+            <div class="date">Saturday, 13 June 2026</div>
+            <div class="time-loc">
+              10:00–11:30 CEST<br>
               A6 Hall, Stockholmsmässan, Stockholm, Sweden
-            </span>
+            </div>
           </div>
-
-          <!-- Restructured Speaker List -->
-          <h2 style="font-size: var(--step-1); border-bottom: 1px solid var(--rule); padding-bottom: 8px; margin-bottom: 20px;">Agenda &amp; Speakers</h2>
           
-          <div class="speaker-list">
-            <div class="speaker-item">
+          <div class="timeline">
+            <!-- Item 1 -->
+            <div class="timeline-item">
+              <div class="speaker-topic">The importance of real-world experience<br>and patient perspective in rare diseases</div>
               <div class="speaker-info">
                 <span class="name">Danny Hsu (Chair)</span>
                 <span class="country">Australia</span>
               </div>
-              <div class="speaker-topic">The importance of real‑world experience and patient perspective in rare diseases</div>
             </div>
 
-            <div class="speaker-item">
+            <!-- Item 2 -->
+            <div class="timeline-item">
+              <div class="speaker-topic">PNH: Lifting the fog of fatigue</div>
               <div class="speaker-info">
                 <span class="name">Ana Boban</span>
                 <span class="country">Croatia</span>
               </div>
-              <div class="speaker-topic"><strong>PNH:</strong> Lifting the fog of fatigue</div>
             </div>
 
-            <div class="speaker-item">
+            <!-- Item 3 -->
+            <div class="timeline-item">
+              <div class="speaker-topic">Common themes across rare haematological diseases:<br>My observations from treating patients with PNH &amp; ITP</div>
               <div class="speaker-info">
                 <span class="name">Danny Hsu (Chair)</span>
                 <span class="country">Australia</span>
               </div>
-              <div class="speaker-topic"><strong>Common themes:</strong> My observations from treating patients with PNH &amp; ITP</div>
             </div>
 
-            <div class="speaker-item">
+            <!-- Item 4 -->
+            <div class="timeline-item">
+              <div class="speaker-topic">ITP: Beyond the count, transforming patient care</div>
               <div class="speaker-info">
                 <span class="name">María Lozano</span>
                 <span class="country">Spain</span>
               </div>
-              <div class="speaker-topic"><strong>ITP:</strong> Beyond the count, transforming patient care</div>
             </div>
 
-            <div class="speaker-item">
-              <div class="speaker-info">
-                <span class="name">All Faculty</span>
-              </div>
+            <!-- Item 5 -->
+            <div class="timeline-item">
               <div class="speaker-topic">Panel discussion and conclusion</div>
+              <div class="speaker-info">
+                <span class="name">All</span>
+              </div>
             </div>
           </div>
 
@@ -385,7 +390,7 @@
         <!-- CALL TO ACTION / SIDEBAR -->
         <aside class="cta-col reveal" aria-label="Add to calendar">
           <h2>Save the Date</h2>
-          <p class="note">Click below to add this symposium to your personal calendar.</p>
+          <p class="note">Reserve your time for this symposium by adding it to your personal calendar.</p>
           
           <div class="btn-group">
             <a class="btn primary" href="https://addcalendar.github.io/CalendarLinks/sobi-eha2026-symposium.ics">
@@ -402,9 +407,20 @@
     <!-- BRAND BAR FOOTER -->
     <footer class="brandbar reveal" aria-label="Brand & legal">
       <div class="legal">
-        <strong>Intended for Healthcare Professionals.</strong><br>
-        © 2026 Swedish Orphan Biovitrum AB (publ). All rights reserved. <br>
-        “Sobi” is a trademark of Swedish Orphan Biovitrum AB (publ).
+        <p>This medical education session is intended for healthcare professionals.</p>
+        <p>
+          Sobi is a trademark of Swedish Orphan Biovitrum AB (publ)<br>
+          ©2026 Swedish Orphan Biovitrum AB (publ) – All rights reserved
+        </p>
+        <p>
+          Swedish Orphan Biovitrum AB (publ)<br>
+          SE-112 76 Stockholm, Sweden<br>
+          <a href="https://www.sobi.com" style="color:#ffffff; text-decoration:underline;">www.sobi.com</a>
+        </p>
+        <p>
+          Date of preparation: March 2026<br>
+          NP-48722
+        </p>
       </div>
       <img class="logo-white" alt="Sobi logo" src="https://www.sobi.com/sites/sobi/files/ma/SOBI_logo_PNG_0.png">
     </footer>
