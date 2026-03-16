@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Sobi//EHA2026 Symposium//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:1321d979-7aa1-4949-923d-7f5a42a5fc45@sobi.com
+DTSTAMP:20260316T155058Z
+DTSTART:20260613T080000Z
+DTEND:20260613T093000Z
+SUMMARY:Sobi Updates-in-Hematology at EHA2026 Congress
+DESCRIPTION:From Labs to Lives: Redefining Success in Rare Diseases — PNH & ITP\n\nProgramme:\n• The importance of real-world experience and patient perspective in rare diseases – Danny Hsu (Chair)\, Australia\n• PNH: Lifting the fog of fatigue – Ana Boban\, Croatia\n• Common themes across rare haematological diseases: My observations from treating patients with PNH & ITP – Danny Hsu (Chair)\, Australia\n• ITP: Beyond the count\, transforming patient care – María Lozano\, Spain\n• Panel discussion and conclusion – All\n\nThis medical education session is intended for healthcare professionals.\nSobi is a trademark of Swedish Orphan Biovitrum AB (publ).
+LOCATION:A6 Hall\, Stockholmsmässan\, Stockholm\, Sweden
+URL:https://www.sobi.com
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR
