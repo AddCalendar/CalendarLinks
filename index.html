@@ -259,10 +259,11 @@
     }
 
     /* ==============================
-       BRAND BAR / FOOTER (PDF Match + Sobi Gradient)
+       BRAND BAR / FOOTER (PDF Match + Corrected Sobi Gradient)
        ============================== */
     .brandbar {
-      background: linear-gradient(to right, #F0B323, #EB9200);
+      /* Fades from Dark Orange on the left to Light Orange/Yellow on the right */
+      background: linear-gradient(to right, #EB9200, #F0B323);
       border-radius: 0 0 var(--radius-lg) var(--radius-lg);
       display: flex;
       align-items: flex-end;
