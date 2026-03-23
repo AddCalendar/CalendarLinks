@@ -1,15 +1,18 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Sobi//NONSGML Event//EN
+PRODID:-//Sobi//EHA2026//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
+UID:sobi-eha2026-symposium-02@sobi.com
+DTSTAMP:20260323T153900Z
 DTSTART:20260611T060000Z
 DTEND:20260611T073000Z
-LOCATION:A5 Hall, Stockholmsmässan, Stockholm, Sweden
-SUBJECT:Sobi Updates-in-Hematology at EHA2026 Congress
-DESCRIPTION:Treating relapsed/refractory diffuse large B-cell lymphoma in 2026: Existing gaps, daily practice and next moves.\n\n08:00–09:30 CEST
 SUMMARY:Sobi Updates-in-Hematology at EHA2026 Congress
-URL:https://www.sobi.com
+DESCRIPTION:Treating relapsed/refractory diffuse large B-cell lymphoma in 2026: Existing gaps\, daily practice and next moves.\n\nThursday\, 11 June 2026\n08:00 - 09:30 CEST
+LOCATION:A5 Hall\, Stockholmsmässan\, Stockholm\, Sweden
+SEQUENCE:0
+STATUS:CONFIRMED
+TRANSP:OPAQUE
 END:VEVENT
 END:VCALENDAR
