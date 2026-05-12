@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Sobi | Special lecture at EAS 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Tackling pancreatitis risk in severe hypertriglyceridemia through apoC-III inhibition. Tuesday, 26 May 2026, 14:45 – 15:30 EEST. Megaron Athens International Convention Centre, Christos Aravanis Hall, Greece." />
+  <meta name="color-scheme" content="light only" />
+
+  <style>
+    /* ==============================
+       Design Tokens (Matched to PDF)
+       ============================== */
+    :root {
+      --brand-teal: #1a8a8a;
+      --brand-teal-hover: #157373;
+      --brand-teal-light: rgba(26, 138, 138, 0.08);
+      --brand-orange: #f0b323;
+      --brand-orange-dark: #eb9200;
+      --text-main: #4b4b4d;
+      --text-muted: #737373;
+      --rule: #e5e5e5;
+      --bg-page: #f9f9f9;
+
+      --radius-lg: 16px;
+      --radius-sm: 12px;
+      --shadow-lg: 0 25px 50px -12px rgba(26, 138, 138, 0.1);
+      --shadow-sm: 0 8px 16px -4px rgba(0, 0, 0, 0.04);
+      --shadow-hover: 0 12px 28px -6px rgba(26, 138, 138, 0.25);
+
+      /* Fluid Typography */
+      --step--1: 0.875rem;
+      --step-0: 1.05rem;
+      --step-1: 1.25rem;
+      --step-2: 1.5rem;
+      --step-3: 1.875rem;
+      --step-4: clamp(1.8rem, 4vw + 1rem, 2.4rem);
+    }
+
+    /* Base Reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text-main);
+      background: var(--bg-page);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--brand-teal); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--brand-teal-hover); text-decoration: underline; }
+    
+    .wrap {
+      max-width: 1050px;
+      margin: min(4vw, 40px) auto;
+      padding: 0 20px;
+    }
+
+    /* ==============================
+       HERO / MAIN CARD WITH BACKGROUND
+       ============================== */
+    .hero {
+      position: relative;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      background-color: #fff;
+    }
+
+    .hero-banner {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .hero-inner {
+      display: grid;
+      gap: 40px;
+      grid-template-columns: 1fr minmax(300px, 340px);
+      padding: clamp(32px, 5vw, 56px);
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+    }
+
+    /* Header Content */
+    .eyebrow {
+      color: var(--text-main);
+      font-size: var(--step-0);
+      margin-bottom: 32px;
+      display: block;
+    }
+
+    h1 {
+      font-size: var(--step-4);
+      line-height: 1.3;
+      margin: 0 0 40px 0;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    h1 strong {
+      font-weight: 700;
+      display: block;
+      color: var(--brand-teal);
+    }
+
+    /* Date and Time Text Block */
+    .when-block {
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--rule);
+      max-width: 450px;
+    }
+    .when-block .date {
+      color: var(--brand-teal);
+      font-weight: 700;
+      font-size: var(--step-3);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .when-block .time-loc {
+      color: var(--text-main);
+      font-size: var(--step-0);
+      line-height: 1.4;
+    }
+
+    .cme-note {
+      display: inline-block;
+      margin-bottom: 32px;
+      padding: 8px 16px;
+      background: var(--brand-teal-light);
+      border-left: 3px solid var(--brand-teal);
+      font-size: var(--step--1);
+      color: var(--text-muted);
+      line-height: 1.5;
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* ==============================
+       TIMELINE AGENDA
+       ============================== */
+    .timeline {
+      position: relative;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background: rgba(26, 138, 138, 0.2);
+    }
+
+    .timeline-item {
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--brand-teal);
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.8);
+      z-index: 1;
+    }
+
+    .timeline-time {
+      color: var(--brand-teal);
+      font-size: var(--step--1);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 2px;
+    }
+
+    .speaker-topic {
+      color: var(--brand-teal);
+      font-size: var(--step-1);
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+    
+    .speaker-info .name {
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: var(--step-0);
+      display: block;
+    }
+    .speaker-info .country {
+      color: var(--text-muted);
+      font-size: var(--step--1);
+      display: block;
+    }
+
+    /* ==============================
+       SIDEBAR / CTA (Glassmorphism)
+       ============================== */
+    aside.cta-col {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: var(--radius-sm);
+      padding: 32px 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      align-self: start;
+      position: sticky;
+      top: 32px;
+    }
+    .cta-col h2 {
+      margin: 0 0 12px 0;
+      font-size: var(--step-2);
+      color: var(--text-main);
+      font-weight: 700;
+    }
+    .cta-col .note {
+      color: var(--text-muted);
+      font-size: var(--step--1);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: var(--step-0);
+      text-decoration: none !important;
+      transition: all 0.25s ease;
+      text-align: center;
+    }
+    
+    .btn.primary {
+      background: var(--brand-teal);
+      color: #ffffff;
+      box-shadow: 0 8px 16px -4px rgba(26, 138, 138, 0.4);
+      border: 1px solid var(--brand-teal);
+    }
+    .btn.primary:hover {
+      background: var(--brand-teal-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+      color: #ffffff;
+    }
+
+    .btn.secondary {
+      background: #ffffff;
+      color: var(--brand-teal);
+      border: 1px solid var(--rule);
+      cursor: pointer;
+    }
+    .btn.secondary:hover {
+      background: #fafafa;
+      border-color: var(--brand-teal);
+      transform: translateY(-2px);
+    }
+
+    /* ==============================
+       BRAND BAR / FOOTER
+       ============================== */
+    .brandbar {
+      background: linear-gradient(to right, #EB9200, #F0B323);
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 40px;
+      color: #ffffff;
+    }
+    @media (max-width: 650px) {
+      .brandbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+        padding: 32px 24px;
+      }
+    }
+    
+    .legal {
+      font-size: 0.8rem;
+      line-height: 1.6;
+      max-width: 500px;
+    }
+    .legal p {
+      margin: 0 0 12px 0;
+    }
+    .legal p:last-child { margin: 0; }
+    
+    .brandbar .logo-white {
+      filter: brightness(0) invert(1);
+      height: 48px;
+      width: auto;
+    }
+
+    /* ==============================
+       ANIMATIONS
+       ============================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .btn:hover { transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    
+    <!-- HERO SECTION -->
+    <main class="hero reveal" role="main" aria-labelledby="event-title">
+      <img class="hero-banner" src="assets/bg-invite_3.png" alt="" role="presentation" />
+      <div class="hero-inner">
+        <div class="content-col">
+          
+          <span class="eyebrow">Sobi-sponsored special lecture at EAS 2026</span>
+
+          <h1 id="event-title">Tackling pancreatitis risk<br>in severe hypertriglyceridemia<br>
+            <strong>through apoC-III inhibition</strong>
+          </h1>
+
+          <div class="when-block">
+            <div class="date">Tuesday, 26 May 2026</div>
+            <div class="time-loc">
+              14:45 – 15:30 EEST (UTC+3)<br>
+              Megaron Athens International Convention Centre,<br>
+              Christos Aravanis Hall, Greece
+            </div>
+          </div>
+
+          <div class="cme-note">This session is not included in the main event CME/CPD credit</div>
+          
+          <div class="timeline">
+            <!-- Item 1 -->
+            <div class="timeline-item">
+              <div class="timeline-time">14:45</div>
+              <div class="speaker-topic">Chair's welcome &amp; agenda</div>
+              <div class="speaker-info">
+                <span class="name">Prof. Børge Nordestgaard (Chair)</span>
+                <span class="country">Denmark</span>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="timeline-item">
+              <div class="timeline-time">14:48</div>
+              <div class="speaker-topic">Identify sHTG before pancreatitis hits</div>
+              <div class="speaker-info">
+                <span class="name">Prof. Børge Nordestgaard</span>
+                <span class="country">Denmark</span>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="timeline-item">
+              <div class="timeline-time">14:58</div>
+              <div class="speaker-topic">Target apoC-III to reduce pancreatitis risk</div>
+              <div class="speaker-info">
+                <span class="name">Prof. Erik Stroes</span>
+                <span class="country">The Netherlands</span>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="timeline-item">
+              <div class="timeline-time">15:08</div>
+              <div class="speaker-topic">From evidence to clinical practice</div>
+              <div class="speaker-info">
+                <span class="name">Prof. Klaus Parhofer</span>
+                <span class="country">Germany</span>
+              </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="timeline-item">
+              <div class="timeline-time">15:18</div>
+              <div class="speaker-topic">Q&amp;A / Panel discussion &amp; closing remarks</div>
+              <div class="speaker-info">
+                <span class="name">All faculty</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CALL TO ACTION / SIDEBAR -->
+        <aside class="cta-col reveal" aria-label="Add to calendar">
+          <h2>Save the Date</h2>
+          <p class="note">Reserve your time for this lecture by adding it to your personal calendar.</p>
+          
+          <div class="btn-group">
+            <a class="btn primary" href="https://outlook.office.com/calendar/0/deeplink/compose?subject=Sobi%20Special%20Lecture%20at%20EAS%202026%20%E2%80%93%20Tackling%20pancreatitis%20risk%20in%20sHTG&startdt=2026-05-26T11:45:00Z&enddt=2026-05-26T12:30:00Z&location=Megaron%20Athens%20International%20Convention%20Centre%2C%20Christos%20Aravanis%20Hall%2C%20Athens%2C%20Greece&body=Tackling%20pancreatitis%20risk%20in%20severe%20hypertriglyceridemia%20through%20apoC-III%20inhibition.%0A%0ASobi-sponsored%20special%20lecture%20at%20EAS%202026.%0A14%3A45%E2%80%9315%3A30%20EEST%20(UTC%2B3)." target="_blank" rel="noopener">
+              ✉️ Add directly to Outlook
+            </a>
+            <a class="btn secondary" href="sobi-eas2026-symposium.ics">
+              📅 Apple / Google calendar
+            </a>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- BRAND BAR FOOTER -->
+    <footer class="brandbar reveal" aria-label="Brand & legal">
+      <div class="legal">
+        <p>This medical education session is intended for healthcare professionals</p>
+        <p>
+          Sobi is a trademark of Swedish Orphan Biovitrum AB (publ)<br>
+          © 2026 Swedish Orphan Biovitrum AB (publ) – All rights reserved
+        </p>
+        <p>
+          Swedish Orphan Biovitrum AB (publ)<br>
+          SE-112 76 Stockholm, Sweden
+        </p>
+        <p>
+          Date of preparation: April 2026<br>
+          NP-48000
+        </p>
+      </div>
+      <img class="logo-white" alt="Sobi logo" src="https://www.sobi.com/sites/sobi/files/ma/SOBI_logo_PNG_0.png">
+    </footer>
+
+  </div>
+
+  <script>
+    // Smooth scroll reveal observer
+    document.addEventListener("DOMContentLoaded", () => {
+      const els = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -5% 0px", threshold: 0.1 });
+      
+      els.forEach(el => io.observe(el));
+    });
+  </script>
+</body>
+</html>
