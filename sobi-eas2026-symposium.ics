@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Sobi//EAS2026 Symposium//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+DTSTART:20260526T114500Z
+DTEND:20260526T123000Z
+DTSTAMP:20260401T120000Z
+UID:sobi-eas2026-apoc3-symposium@sobi.com
+SUMMARY:Sobi-sponsored special lecture at EAS 2026 – Tackling pancreatitis risk in severe hypertriglyceridemia through apoC-III inhibition
+DESCRIPTION:Tackling pancreatitis risk in severe hypertriglyceridemia through apoC-III inhibition\n\nSobi-sponsored special lecture at EAS 2026\n\nTuesday\, 26 May 2026\n14:45 – 15:30 EEST (UTC+3)\n\nAgenda:\n14:45 – Chair's welcome & agenda – Prof. Børge Nordestgaard (Denmark)\n14:48 – Identify sHTG before pancreatitis hits – Prof. Børge Nordestgaard (Denmark)\n14:58 – Target apoC-III to reduce pancreatitis risk – Prof. Erik Stroes (The Netherlands)\n15:08 – From evidence to clinical practice – Prof. Klaus Parhofer (Germany)\n15:18 – Q&A / Panel discussion & closing remarks – All faculty\n\nThis session is not included in the main event CME/CPD credit.\nThis medical education session is intended for healthcare professionals.
+LOCATION:Megaron Athens International Convention Centre\, Christos Aravanis Hall\, Athens\, Greece
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Sobi EAS 2026 symposium starts in 30 minutes
+END:VALARM
+END:VEVENT
+END:VCALENDAR
